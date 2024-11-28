@@ -17,7 +17,7 @@ int	newline(char *str)
 	int	i;
 
 	i = 0;
-	if (!str)
+	if (str == NULL)
 		return(0);
 	while (str[i])
 		if (str[i] == '\n')
@@ -105,8 +105,17 @@ char	*get_next_line(int fd)
 {
 	static char	*str;
 	char	*str2;
-
+	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	str = ft_read(str, fd);
+	if (str == NULL || str[0] == '\0')
+	{
+		if (str != NULL)
+			free(str);
+		return (NULL);
+	}
+	str2 = str_line(str);
+	str = new_str(str);
+	return(str2);
 }
