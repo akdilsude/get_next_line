@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:59:53 by sakdil            #+#    #+#             */
-/*   Updated: 2024/11/26 20:40:48 by sakdil           ###   ########.fr       */
+/*   Updated: 2024/11/28 22:00:43 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	newline(char *str)
 	if (str == NULL)
 		return(0);
 	while (str[i])
+	{	
 		if (str[i] == '\n')
 			return (1);
 		i++;
+	}
 	return (0);
 }
 
@@ -39,7 +41,7 @@ char	*ft_read(char *str, int fd)
 		index = read(fd, temp, BUFFER_SIZE);
 		if (index == -1)
 		{
-			if (str)
+			if (str != NULL)
 				free(str);
 			free(temp);
 			return (NULL);
@@ -63,7 +65,7 @@ char	*str_line(char *str)
 	if (str[i] == '\n')
 		i++;
 	s = malloc(sizeof(char) * (i + 1));
-	if (!s)
+	if (s == NULL)
 		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -105,7 +107,7 @@ char	*get_next_line(int fd)
 {
 	static char	*str;
 	char	*str2;
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	str = ft_read(str, fd);
@@ -117,5 +119,5 @@ char	*get_next_line(int fd)
 	}
 	str2 = str_line(str);
 	str = new_str(str);
-	return(str2);
+	return (str2);
 }
