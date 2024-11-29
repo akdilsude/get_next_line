@@ -103,6 +103,7 @@ char	*new_str(char *str)
 	free(str);
 	return (new_str);
 }
+
 char	*get_next_line(int fd)
 {
 	static char	*str;
