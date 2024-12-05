@@ -105,7 +105,7 @@ char	*new_str(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str[10240];
+	static char	*str[1024];
 	char		*str2;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
